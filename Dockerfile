@@ -6,8 +6,11 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем все файлы бота
+# Копируем все файлы
 COPY . .
 
-# Запускаем бота
-CMD ["python", "bot.py"]
+# Делаем скрипт исполняемым
+RUN chmod +x start.sh
+
+# Запускаем с exec формой (правильно для Docker)
+CMD ["./start.sh"]
